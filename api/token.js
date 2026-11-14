@@ -1,6 +1,6 @@
-const { RtcTokenBuilder, RtcRole } = require('agora-access-token');
+import { RtcTokenBuilder, RtcRole } from 'agora-access-token';
 
-module.exports = (req, res) => {
+export default function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -22,4 +22,4 @@ module.exports = (req, res) => {
 
   const token = RtcTokenBuilder.buildTokenWithUid(appId, appCert, channel, uid, role, expire);
   return res.status(200).json({ token, uid, channel, appId });
-};
+}
