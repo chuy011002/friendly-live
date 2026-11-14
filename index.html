@@ -33,8 +33,8 @@ function canalLlamada(chatId){
   return 'call_'+(chatId||'general').replace(/[^a-zA-Z0-9_]/g,'').toLowerCase();
 }
 // Pide token nuevo al servidor cada vez que alguien entra
-async function obtenerToken(canal, uid){
-  var r = await fetch('/api/token?channel='+encodeURIComponent(canal)+'&uid='+uid);
+async function obtenerToken(canal, uid, role){
+  var r = await fetch('https://friendly-live-28gx.vercel.app/api/token?channel='+encodeURIComponent(canal)+'&uid='+uid+'&role='+(role||'audience'));
   var d = await r.json();
   if(!d.token) throw new Error('No se pudo generar token');
   return d.token;
